@@ -1,0 +1,20 @@
+<!-- store/templates/store/order_confirmation.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+</head>
+<body>
+    <h1>Order Confirmation</h1>
+    <p>Your order has been placed successfully!</p>
+    <h2>Order Details:</h2>
+    <ul>
+        {% for item in order.orderitem_set.all %}
+            <li>{{ item.product.name }} - Quantity: {{ item.quantity }} - ${{ item.total_price }}</li>
+        {% endfor %}
+    </ul>
+    <h3>Total: ${{ order.orderitem_set.all|sum:"total_price" }}</h3>
+</body>
+</html>

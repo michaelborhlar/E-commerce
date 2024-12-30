@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <!-- Add Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom background and text colors */
+        body {
+            background-color: #f4f6f9;  /* Light background color */
+        }
+
+        .card {
+            border-radius: 15px;  /* Rounded corners for cards */
+            transition: transform 0.3s ease;  /* Smooth transition on hover */
+        }
+
+        .card:hover {
+            transform: scale(1.05);  /* Card grows slightly on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Darker shadow on hover */
+        }
+
+        .card-title {
+            color: #5d2f8e;  /* Beautiful purple color for titles */
+        }
+
+        .card-body {
+            background-color: #fff;  /* White background for card body */
+        }
+
+        .card-text {
+            color: #333;  /* Dark text for description and other details */
+        }
+
+        .btn-primary {
+            background-color: #ff6347;  /* Tomato red button */
+            border: none;
+            border-radius: 30px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #e53e3e;  /* Darker tomato color on hover */
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .product-card {
+            padding: 20px;
+        }
+
+        /* Custom image styling */
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px 15px 0 0;  /* Rounded corners on top of the image */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4" style="color: #2c3e50;">Our Beautiful Products</h1>
+        <div class="row">
+            {% for product in products %}
+                <div class="col-md-4 mb-4 product-card">
+                    <div class="card shadow-sm">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">{{ product.description }}</p>
+                            <p class="card-text"><strong>Price:</strong> ${{ product.price }}</p>
+                            <p class="card-text"><strong>Stock:</strong> {{ product.stock }}</p>
+                            <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary btn-block">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

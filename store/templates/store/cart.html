@@ -1,0 +1,21 @@
+<!-- store/templates/store/cart.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+</head>
+<body>
+    <h1>Your Cart</h1>
+    <ul>
+        {% for item in cart_items %}
+            <li>
+                {{ item.product.name }} - Quantity: {{ item.quantity }} - ${{ item.total_price }}
+            </li>
+        {% endfor %}
+    </ul>
+    <h2>Total: ${{ total }}</h2>
+    <a href="{% url 'checkout' %}">Proceed to Checkout</a>
+</body>
+</html>
